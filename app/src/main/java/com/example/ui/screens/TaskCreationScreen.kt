@@ -185,16 +185,15 @@ fun TaskCreationScreen(
                         // Date Picker trigger button
                         Button(
                             onClick = {
-                                val currentCal = Calendar.getInstance()
                                 DatePickerDialog(
                                     context,
                                     { _, year, m, day ->
                                         selectedDateStr = String.format("%04d-%02d-%02d", year, m + 1, day)
                                         updateDeadline()
                                     },
-                                    currentCal.get(Calendar.YEAR),
-                                    currentCal.get(Calendar.MONTH),
-                                    currentCal.get(Calendar.DAY_OF_MONTH)
+                                    calendar.get(Calendar.YEAR),
+                                    calendar.get(Calendar.MONTH),
+                                    calendar.get(Calendar.DAY_OF_MONTH)
                                 ).show()
                             },
                             modifier = Modifier.weight(1f),
@@ -209,15 +208,14 @@ fun TaskCreationScreen(
                         // Time Picker trigger button
                         Button(
                             onClick = {
-                                val currentCal = Calendar.getInstance()
                                 TimePickerDialog(
                                     context,
                                     { _, hour, min ->
                                         selectedTimeStr = String.format("%02d:%02d", hour, min)
                                         updateDeadline()
                                     },
-                                    currentCal.get(Calendar.HOUR_OF_DAY),
-                                    currentCal.get(Calendar.MINUTE),
+                                    calendar.get(Calendar.HOUR_OF_DAY),
+                                    calendar.get(Calendar.MINUTE),
                                     true
                                 ).show()
                             },

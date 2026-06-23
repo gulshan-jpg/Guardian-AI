@@ -53,6 +53,23 @@ class MainActivity : ComponentActivity() {
         // Create alert notifications setup
         NotificationHelper.createNotificationChannels(this)
 
+        // Request runtime permissions if required
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            val permissions = mutableListOf(
+                android.Manifest.permission.RECORD_AUDIO,
+                android.Manifest.permission.READ_CALENDAR,
+                android.Manifest.permission.WRITE_CALENDAR
+            )
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                permissions.add(android.Manifest.permission.POST_NOTIFICATIONS)
+            }
+            androidx.core.app.ActivityCompat.requestPermissions(
+                this,
+                permissions.toTypedArray(),
+                101
+            )
+        }
+
         // Enqueue background risk assessment and upcoming deadline notifier check every hour
         try {
             val workRequest = PeriodicWorkRequestBuilder<NotificationWorker>(1, TimeUnit.HOURS).build()
