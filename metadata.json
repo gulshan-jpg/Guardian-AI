@@ -1,0 +1,6 @@
+{
+  "name": "Guardian AI",
+  "description": "An AI-powered productivity execution system that predicts task failure risk and generates step-by-step recovery plans.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
